@@ -22,7 +22,13 @@ import { User } from '../auth/entities/user.entity';
 import { Session } from './entities/session.entity';
 import { Participation } from '../participation/entities/participation.entity';
 
-@WebSocketGateway({ cors: { origin: '*' } }) // Enable CORS if needed
+@WebSocketGateway({
+  cors: {
+    origin: ['https://igamming-backend.vercel.app/'],
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
+})
 export class SessionGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
