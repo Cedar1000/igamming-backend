@@ -24,7 +24,7 @@ import { Participation } from '../participation/entities/participation.entity';
 
 @WebSocketGateway({
   cors: {
-    origin: '*',
+    origin: 'http://localhost:3000',
     credentials: true,
   },
 })
