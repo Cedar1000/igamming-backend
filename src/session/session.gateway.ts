@@ -189,7 +189,6 @@ export class SessionGateway
       where: { sessionId },
     });
 
-    console.log({ count, sessionId });
 
     // update the session with the number of players
     const update = await this.sessionRepository.update(sessionId, {
