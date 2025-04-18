@@ -27,6 +27,8 @@ import { Participation } from '../participation/entities/participation.entity';
     origin: '*',
     credentials: true,
   },
+
+  namespace: '/socket.io',
 })
 export class SessionGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
