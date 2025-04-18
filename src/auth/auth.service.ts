@@ -21,7 +21,7 @@ import {
   updateOneOne,
 } from '../../utils/handlerFactory';
 
-import signToken from 'utils/signToken';
+import signToken from '../../utils/signToken';
 
 @Injectable()
 export class AuthService {
