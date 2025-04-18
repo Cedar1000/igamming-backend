@@ -50,7 +50,7 @@ export class SessionService {
 
   @Cron(CronExpression.EVERY_MINUTE)
   async handleCreateSession() {
-    console.log('session creation');
+    // console.log('session creation');
 
     // generate random number between 1 and 10
     const randomNumber = Math.floor(Math.random() * 10) + 1;
