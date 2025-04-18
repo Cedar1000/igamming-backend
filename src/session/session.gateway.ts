@@ -27,8 +27,6 @@ import { Participation } from '../participation/entities/participation.entity';
     origin: '*',
     credentials: true,
   },
-
-  namespace: '/socket.io',
 })
 export class SessionGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
@@ -188,7 +186,6 @@ export class SessionGateway
     const count = await this.participationRepository.count({
       where: { sessionId },
     });
-
 
     // update the session with the number of players
     const update = await this.sessionRepository.update(sessionId, {
