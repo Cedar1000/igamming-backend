@@ -24,7 +24,7 @@ import { Participation } from '../participation/entities/participation.entity';
 
 @WebSocketGateway({
   cors: {
-    origin: ['https://igamming-backend.vercel.app/'],
+    origin: ['*'],
     methods: ['GET', 'POST'],
     credentials: true,
   },

@@ -15,11 +15,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: configService.getOrThrow('DB_SYNCHRONIZE'),
         autoLoadEntities: true,
-
         ssl: {
-          rejectUnauthorized: false, // If using self-signed certificates, set this to false
+          rejectUnauthorized: false,
+        },
+
+        // ✅ Add these pool settings
+        extra: {
+          max: 10, // adjust based on traffic & DB server config
+          idleTimeoutMillis: 30000,
         },
       }),
+
       inject: [ConfigService],
     }),
   ],
