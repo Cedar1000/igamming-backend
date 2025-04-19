@@ -70,8 +70,9 @@ export class SessionService {
       // update all session participants with win or loose
       const participants = await this.participationRepository.find({
         where: { sessionId: previousSession.id },
-        relations: ['user'],
       });
+
+      console.log({ participants });
 
       const promises = participants.map(async (participant) => {
         const isWinner = participant.chosenNumber === randomNumber;
@@ -101,6 +102,8 @@ export class SessionService {
       });
 
       const updateParticipants = await Promise.all(promises);
+
+      console.log({ updateParticipants });
 
       winners = updateParticipants.filter(
         (participant) => participant.isWinner,

@@ -79,7 +79,8 @@ export class SessionGateway
 
   @SubscribeMessage('number-pick')
   async handleNumberPick(client: Socket, message: any): Promise<void> {
-    const { sessionId, userId, number } = message;
+    console.log('Number picked:', message);
+    const { sessionId, token, number } = message;
 
     // find the session
     const session = await this.sessionRepository.findOne({
@@ -88,16 +89,25 @@ export class SessionGateway
 
     if (!session) return;
 
+    const decoded: any = await promisify<string, string>(jwt.verify)(
+      token,
+      // @ts-expect-error
+      process.env.JWT_SECRET as string,
+    );
+
+    // 3) Check if user still exists
+    // Implement logic to retrieve user from database
+
     // find the user
     const user = await this.userRepository.findOne({
-      where: { id: userId },
+      where: { id: decoded.id },
     });
 
     if (!user) return;
 
     // update participation with the number
     const participation = await this.participationRepository.findOne({
-      where: { sessionId, userId },
+      where: { sessionId, userId: user.id },
       relations: ['user'],
     });
 
