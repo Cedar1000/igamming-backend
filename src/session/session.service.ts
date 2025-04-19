@@ -53,7 +53,8 @@ export class SessionService {
     // console.log('session creation');
 
     // generate random number between 1 and 10
-    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    // const randomNumber = Math.floor(Math.random() * 10) + 1;
+    const randomNumber = 5;
 
     // update previous session with random number
     const [previousSession] = await this.sessionRepository.find({
